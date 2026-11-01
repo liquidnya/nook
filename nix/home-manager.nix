@@ -424,10 +424,9 @@ let
         export USER=${lib.escapeShellArg username}
         export LOGNAME=${lib.escapeShellArg username}
         export XDG_RUNTIME_DIR=/run/user/${toString uid}
-        export PATH=${sessionTools}/bin:/run/wrappers/bin:${appPackage}/bin:/run/current-system/sw/bin
+        export PATH=${sessionTools}/bin:${appPackage}/bin:$PATH
         export SHELL=${appPackage}/bin/${shell}
         export WAYLAND_DISPLAY=wayland-0
-        export XDG_DATA_DIRS=${lib.escapeShellArg container.environment.variables.XDG_DATA_DIRS}
         export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
         unset DBUS_SYSTEM_BUS_ADDRESS DISPLAY XAUTHORITY
         ${lib.optionalString cfg.startX "export DISPLAY=:0"}
